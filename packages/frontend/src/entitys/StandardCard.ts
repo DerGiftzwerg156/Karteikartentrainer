@@ -1,11 +1,21 @@
+import {Collection} from "./Collection";
+import {CardType} from "./CardType";
+
 export class StandardCard {
-  standardCardId: number;
+  id: number | undefined;
+  collection: Collection;
+  cardType: CardType;
   question: string;
   answer: string;
 
-  constructor(standardCardId: number, question: string, answer: string) {
-    this.standardCardId = standardCardId;
+
+  constructor(id: number | undefined, collection: Collection, cardType: CardType, question: string, answer: string) {
+    this.id = id;
+    this.collection = collection;
+    this.cardType = cardType;
     this.question = question;
     this.answer = answer;
   }
+
+
 }

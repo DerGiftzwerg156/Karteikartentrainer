@@ -1,0 +1,12 @@
+version: "3"  # optional since v1.27.0
+services:
+  mariadb:
+    container_name: Dev-Karteikartentrainer
+    image: mariadb
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_DATABASE=cards
+      - MYSQL_PASSWORD=Password1
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=Password1

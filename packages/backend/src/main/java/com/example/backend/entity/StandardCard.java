@@ -3,13 +3,21 @@ package com.example.backend.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "standardCard")
+@Table(name = "standard_card")
 public class StandardCard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="standard_card_id",nullable = false)
-    private Long standardCardId;
+    @Column(name="card_id",nullable = false)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "collection_id")
+    private Collection collection;
+
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    private CardType cardType;
 
     @Column(name = "question",nullable = false)
     private String question;
@@ -20,17 +28,31 @@ public class StandardCard {
     public StandardCard() {
     }
 
-    public StandardCard(String question, String answer) {
+    public StandardCard(Collection collection, CardType cardType, String question, String answer) {
+        this.collection = collection;
+        this.cardType = cardType;
         this.question = question;
         this.answer = answer;
     }
 
-    public Long getStandardCardId() {
-        return standardCardId;
+    public Long getId() {
+        return id;
     }
 
-    public void setStandardCardId(Long standardCardId) {
-        this.standardCardId = standardCardId;
+    public Collection getCollection() {
+        return collection;
+    }
+
+    public void setCollection(Collection collection) {
+        this.collection = collection;
+    }
+
+    public CardType getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(CardType cardType) {
+        this.cardType = cardType;
     }
 
     public String getQuestion() {

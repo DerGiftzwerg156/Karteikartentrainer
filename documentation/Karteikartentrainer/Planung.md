@@ -1,0 +1,6 @@
+- V1.0
+	- Schönes UI
+	- Anmeldung/Registrierung
+	- Fragenkataloge
+	- Selber Fragen erstellen in UI
+	- Verschiedene Fragetypen
