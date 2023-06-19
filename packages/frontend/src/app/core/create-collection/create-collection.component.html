@@ -1,0 +1,20 @@
+<p-card [style]="{width: '40vw'}">
+  <!--  <div class="flex align-items-center justify-content-center">-->
+  <div class="w-full border-round" [style]="{width: '40vw'}">
+    <div class="text-center mb-5">
+      <div class="text-900 text-3xl font-medium mb-3">Neue Collection erstellen</div>
+    </div>
+
+    <div class="flex flex-column justify-content-center align-items-center">
+      <label for="email1" class="block text-900 font-medium mb-2">Collection Name</label>
+      <input id="email1" type="text" placeholder="Collection Name" pInputText class="mb-3 w-30rem" [(ngModel)]="name">
+
+      <label for="password1" class="block text-900 font-medium mb-2">Beschreibung</label>
+      <textarea rows="5" cols="60" pInputTextarea [(ngModel)]="description" class="mb-3 w-30rem"
+                placeholder="Bitte eine Beschreibung der Collection eingeben"></textarea>
+
+      <button pButton pRipple label="Collection erstellen" icon="pi pi-lock-open" (click)="createCollection()"></button>
+    </div>
+  </div>
+  <!--  </div>-->
+</p-card>

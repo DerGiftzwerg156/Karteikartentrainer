@@ -1,12 +1,12 @@
 import {MultipleChoiceQuestion} from "./MultipleChoiceQuestion";
 
 export class MultipleChoiceAnswer {
-  id: number | undefined;
+  id: number;
   multipleChoiceQuestion: MultipleChoiceQuestion;
   answer: string;
   isRight: boolean;
 
-  constructor(id: number | undefined, multipleChoiceQuestion: MultipleChoiceQuestion, answer: string, isRight: boolean) {
+  constructor(id: number, multipleChoiceQuestion: MultipleChoiceQuestion, answer: string, isRight: boolean) {
     this.id = id;
     this.multipleChoiceQuestion = multipleChoiceQuestion;
     this.answer = answer;

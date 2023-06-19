@@ -1,0 +1,20 @@
+<p-card [style]="{width: '40vw'}">
+  <!--  <div class="flex align-items-center justify-content-center">-->
+  <div class="w-full border-round" [style]="{width: '40vw'}">
+    <div class="text-center mb-5">
+      <div class="text-900 text-3xl font-medium mb-3">Neue Standard Karte erstellen</div>
+    </div>
+    <div class="flex flex-column justify-content-center align-items-center">
+      <label for="question" class="block text-900 font-medium mb-2">Frage</label>
+      <input id="question" type="text" placeholder="Frage eingeben" pInputText class="mb-3 w-30rem"
+             [(ngModel)]="standardCard.question">
+
+      <label for="answer" class="block text-900 font-medium mb-2">Antwort</label>
+      <textarea id="answer" rows="5" cols="60" pInputTextarea [(ngModel)]="standardCard.answer" class="mb-3 w-30rem"
+                placeholder="Antwort eingeben"></textarea>
+
+      <button pButton pRipple icon="pi pi-save" (click)="saveStandardCard()"> Speichern</button>
+    </div>
+  </div>
+  <!--  </div>-->
+</p-card>
