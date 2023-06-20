@@ -19,7 +19,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/createNew")
-    public ResponseEntity<User> createNewUser(@RequestBody User user) {
+    public ResponseEntity<User> createNewUser(@RequestBody LoginRequest user) {
         User newUser = userService.createNewUser(user);
         return new ResponseEntity<>(newUser, HttpStatus.OK);
     }
@@ -30,29 +30,29 @@ public class UserController {
     }
 
     @DeleteMapping("/deleteUser")
-    public void deleteUser( @RequestHeader(value = "Authorization") Long tokenId){
+    public void deleteUser(@RequestHeader(value = "Authorization") Long tokenId) {
         userService.deleteUser(tokenId);
     }
 
     @GetMapping("/getUserByToken")
-    public ResponseEntity<User> getUserByToken(@RequestHeader(value = "Authorization") Long tokenId){
+    public ResponseEntity<User> getUserByToken(@RequestHeader(value = "Authorization") Long tokenId) {
         User user = userService.getUserByToken(tokenId);
-        return new ResponseEntity<>(user,HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> loginUser(@RequestBody LoginRequest loginRequest){
+    public ResponseEntity<User> loginUser(@RequestBody LoginRequest loginRequest) {
         User user = userService.loginUser(loginRequest);
-        return new ResponseEntity<>(user,HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PostMapping("/verifyAccount")
-    public boolean verifyAccount(@RequestBody ActivateAccountRequest activateAccountRequest){
+    public boolean verifyAccount(@RequestBody ActivateAccountRequest activateAccountRequest) {
         return userService.verifyAccount(activateAccountRequest);
     }
 
-    @PostMapping("/logout")
-    public void logout(@RequestBody Token token){
-        userService.logoutUser(token.getId());
+    @GetMapping("/logout")
+    public void logout(@RequestHeader(value = "Authorization") Long tokenId) {
+        userService.logoutUser(tokenId);
     }
 }

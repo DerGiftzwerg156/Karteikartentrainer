@@ -4,6 +4,7 @@ import {User} from "../../../entitys/User";
 import {Token} from "../../../entitys/Token";
 import {Router} from "@angular/router";
 import {LoggerService} from "../../../services/logger.service";
+import {CollectionService} from "../../../services/collection.service";
 
 @Component({
   selector: 'app-collection-overview',
@@ -11,21 +12,30 @@ import {LoggerService} from "../../../services/logger.service";
   styleUrls: ['./collection-overview.component.css']
 })
 export class CollectionOverviewComponent implements OnInit {
-  collections: Collection[] = [
-    new Collection(1, new User(0, new Token(1, "abcde", 123), 'test@test.de', 'pw1234', true, 234), 'First Collection', '1 Dies ist nur eine Test Collection', 12345),
-    new Collection(2, new User(0, new Token(1, "abcde", 123), 'test@test.de', 'pw1234', true, 234), 'Second Collection', '2 Dies ist nur eine Test Collection', 12345)];
+  collections: Collection[] = [];
 
-  constructor(private router: Router, private logger: LoggerService) {
+  constructor(private router: Router, private logger: LoggerService, private collectionService: CollectionService) {
   }
 
   ngOnInit() {
+    this.loadCollections();
   }
 
-  editCollection(id: number) {
+  loadCollections() {
+    this.collectionService.getAllCollectionsByUser().subscribe(res => {
+      this.collections = [];
+      this.collections = res;
+    })
+  }
+
+  editCollection(id: string) {
     this.router.navigate(['editCollection', id])
   }
 
-  deleteCollection(id: number) {
+  deleteCollection(collection: Collection) {
+    this.collectionService.deleteCollection(collection).subscribe(()=>{
+      this.loadCollections()
+    });
 
   }
 }

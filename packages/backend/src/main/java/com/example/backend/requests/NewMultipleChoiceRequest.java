@@ -2,17 +2,18 @@ package com.example.backend.requests;
 
 import com.example.backend.entity.Collection;
 import com.example.backend.entity.MultipleChoiceAnswer;
+import com.example.backend.entity.MultipleChoiceAnswerPlan;
 import com.example.backend.entity.MultipleChoiceQuestion;
 
 public class NewMultipleChoiceRequest {
     private Collection collection;
-    private MultipleChoiceQuestion multipleChoiceQuestion;
-    private MultipleChoiceAnswer[] multipleChoiceAnswers;
+    private String question;
+    private MultipleChoiceAnswerPlan[] answers;
 
-    public NewMultipleChoiceRequest(Collection collection, MultipleChoiceQuestion multipleChoiceQuestion, MultipleChoiceAnswer[] multipleChoiceAnswers) {
+    public NewMultipleChoiceRequest(Collection collection, String question, MultipleChoiceAnswerPlan[] answers) {
         this.collection = collection;
-        this.multipleChoiceQuestion = multipleChoiceQuestion;
-        this.multipleChoiceAnswers = multipleChoiceAnswers;
+        this.question = question;
+        this.answers = answers;
     }
 
     public Collection getCollection() {
@@ -23,19 +24,19 @@ public class NewMultipleChoiceRequest {
         this.collection = collection;
     }
 
-    public MultipleChoiceQuestion getMultipleChoiceQuestion() {
-        return multipleChoiceQuestion;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setMultipleChoiceQuestion(MultipleChoiceQuestion multipleChoiceQuestion) {
-        this.multipleChoiceQuestion = multipleChoiceQuestion;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
-    public MultipleChoiceAnswer[] getMultipleChoiceAnswers() {
-        return multipleChoiceAnswers;
+    public MultipleChoiceAnswerPlan[] getAnswers() {
+        return answers;
     }
 
-    public void setMultipleChoiceAnswers(MultipleChoiceAnswer[] multipleChoiceAnswers) {
-        this.multipleChoiceAnswers = multipleChoiceAnswers;
+    public void setAnswers(MultipleChoiceAnswerPlan[] answers) {
+        this.answers = answers;
     }
 }

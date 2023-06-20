@@ -30,6 +30,11 @@ import {CheckboxModule} from "primeng/checkbox";
 import { StandardCardEditorComponent } from './routerOutlets/edit-collection/standard-card-editor/standard-card-editor.component';
 import { MultipleChoiceCardEditorComponent } from './routerOutlets/edit-collection/multiple-choice-card-editor/multiple-choice-card-editor.component';
 import { LeranModeComponent } from './routerOutlets/learn-mode/leran-mode.component';
+import { StartLearnComponent } from './routerOutlets/learn-mode/start-learn/start-learn.component';
+import {SplitterModule} from "primeng/splitter";
+import { MultipleChoiceCardComponent } from './routerOutlets/learn-mode/multiple-choice-card/multiple-choice-card.component';
+import { StandardCardComponent } from './routerOutlets/learn-mode/standard-card/standard-card.component';
+import { CardViewComponent } from './routerOutlets/learn-mode/card-view/card-view.component';
 
 @NgModule({
   declarations: [
@@ -43,29 +48,34 @@ import { LeranModeComponent } from './routerOutlets/learn-mode/leran-mode.compon
     EditCollectionComponent,
     StandardCardEditorComponent,
     MultipleChoiceCardEditorComponent,
-    LeranModeComponent
+    LeranModeComponent,
+    StartLearnComponent,
+    MultipleChoiceCardComponent,
+    StandardCardComponent,
+    CardViewComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CardModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    AccordionModule,
-    ButtonModule,
-    FormsModule,
-    ChipsModule,
-    FormsModule,
-    DialogModule,
-    ToastModule,
-    InputTextareaModule,
-    RippleModule,
-    MenubarModule,
-    DropdownModule,
-    InputSwitchModule,
-    AvatarModule,
-    CheckboxModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        CardModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        AccordionModule,
+        ButtonModule,
+        FormsModule,
+        ChipsModule,
+        FormsModule,
+        DialogModule,
+        ToastModule,
+        InputTextareaModule,
+        RippleModule,
+        MenubarModule,
+        DropdownModule,
+        InputSwitchModule,
+        AvatarModule,
+        CheckboxModule,
+        SplitterModule
+    ],
   providers: [MessageService],
   bootstrap: [AppComponent]
 })

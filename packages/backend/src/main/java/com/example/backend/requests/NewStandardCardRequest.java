@@ -5,11 +5,13 @@ import com.example.backend.entity.StandardCard;
 
 public class NewStandardCardRequest {
     private Collection collection;
-    private StandardCard standardCard;
+    private String question;
+    private String answer;
 
-    public NewStandardCardRequest(Collection collection, StandardCard standardCard) {
+    public NewStandardCardRequest(Collection collection, String question, String answer) {
         this.collection = collection;
-        this.standardCard = standardCard;
+        this.question = question;
+        this.answer = answer;
     }
 
     public Collection getCollection() {
@@ -20,11 +22,19 @@ public class NewStandardCardRequest {
         this.collection = collection;
     }
 
-    public StandardCard getStandardCard() {
-        return standardCard;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setStandardCard(StandardCard standardCard) {
-        this.standardCard = standardCard;
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }

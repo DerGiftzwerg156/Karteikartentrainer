@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {LoggerService} from "../services/logger.service";
 import {Router} from "@angular/router";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,11 @@ export class AppComponent {
 
   title = 'frontend';
   collectionCode: string = "";
-  loggedIn: boolean = false;
   isLoginVisible: boolean = false;
   isRegistrationVisible: boolean = false;
   isCreateLoginVisible: boolean = false;
 
-  constructor(private router: Router, private logger: LoggerService) {
+  constructor(private router: Router, private logger: LoggerService, private userService: UserService) {
   }
 
   showLogin() {
@@ -37,11 +37,19 @@ export class AppComponent {
 
   isLoggedIn() {
     // TODO Wenn kein valider Token dann logout
-    // return sessionStorage.getItem("token") !=null;
-    return true;
+    // if(sessionStorage.getItem("token")){
+    //   return true;
+    // }else {
+    //   // this.userService.logout()
+    //   this.logger.showError("Bitte erneut anmelden")
+    //   return false;
+    // }
+    return sessionStorage.getItem("token") != null;
   }
 
   searchCollectionCode() {
+    let link = "learnMode/" + this.collectionCode
+    this.router.navigate([link])
     //   TODO Search Collection implementieren
   }
 

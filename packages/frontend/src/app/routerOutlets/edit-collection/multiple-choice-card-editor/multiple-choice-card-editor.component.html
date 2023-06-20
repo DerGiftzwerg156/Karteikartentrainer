@@ -7,7 +7,7 @@
     <div class="flex flex-column justify-content-center align-items-center">
       <label for="question" class="block text-900 font-medium mb-2">Frage</label>
       <input id="question" type="text" placeholder="Frage eingeben" pInputText class="mb-3 w-30rem"
-             [(ngModel)]="card.question.question">
+             [(ngModel)]="card.question">
 
       <label class="block text-900 font-medium mb-2">Antwortmöglichkeiten</label>
       <div *ngFor="let answerOption of card.answers" class="p-inputgroup mb-2">

@@ -4,12 +4,15 @@ import com.example.backend.entity.CardType;
 import com.example.backend.entity.Collection;
 import com.example.backend.repositorys.StandardCardRepository;
 import com.example.backend.entity.StandardCard;
+import com.example.backend.requests.NewStandardCardRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class StandardCardService {
 
     @Autowired
@@ -18,8 +21,11 @@ public class StandardCardService {
     @Autowired
     private CardTypeService cardTypeService;
 
-    public StandardCard createNewStandardCard(Collection collection, StandardCard standardCard) {
-        StandardCard newCard = new StandardCard(collection, getStandardCardType(), standardCard.getQuestion(), standardCard.getAnswer());
+    @Autowired
+    private CollectionService collectionService;
+
+    public StandardCard createNewStandardCard(NewStandardCardRequest newStandardCardRequest) {
+        StandardCard newCard = new StandardCard(collectionService.getCollectionById(newStandardCardRequest.getCollection().getId()), getStandardCardType(), newStandardCardRequest.getQuestion(), newStandardCardRequest.getAnswer());
         return standardCardRepository.save(newCard);
     }
 

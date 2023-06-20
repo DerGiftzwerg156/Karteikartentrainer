@@ -1,0 +1,104 @@
+<div class="block-content">
+  <div class="ng-star-inserted">
+    <div class="min-h-screen flex relative lg:static surface-ground">
+      <div id="app-sidebar"
+           class="h-full lg:h-auto hidden lg:block flex-shrink-0 absolute lg:static left-0 top-0 z-1 border-right-1 surface-border w-full md:w-auto">
+        <div class="flex h-full">
+          <div class="flex flex-column surface-0 p-4 overflow-y-auto flex-shrink-0 flex-grow-1 md:flex-grow-0"
+               style="width: 250px;">
+            <div class="surface-0 flex-auto">
+              <div class="">
+                <div class="w-full lg:w-auto select-none">
+                  <ul class="list-none py-2 px-0 m-0">
+                    <li>
+                      <div class="p-3 text-500 font-medium">Fragenübersicht</div>
+                    </li>
+                    <li *ngFor="let standardItem of standardCards" (click)="askQuestion(standardItem)"><a
+                      class="p-ripple p-element flex align-items-center cursor-pointer p-3 hover:surface-100 border-round transition-colors transition-duration-150"><i
+                      class="pi pi-plus mr-2 text-700"></i><span
+                      class="font-medium text-700">{{standardItem.question}}</span><span
+                      class="p-ink"></span></a></li>
+                    <li *ngFor="let standardItem of multipleChoiceCards" (click)="askQuestion(standardItem)"><a
+                      class="p-ripple p-element flex align-items-center cursor-pointer p-3 hover:surface-100 border-round transition-colors transition-duration-150"><i
+                      class="pi pi-plus mr-2 text-700"></i><span
+                      class="font-medium text-700">{{standardItem.question.question}}</span><span
+                      class="p-ink"></span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="min-h-screen flex flex-column relative flex-auto">
+        <div
+          class="flex justify-content-between align-items-center px-5 surface-section border-bottom-1 surface-border relative lg:static"
+          style="height: 60px;">
+          <div class="flex align-items-center">
+            <span class="p-input-icon-left"><h1>{{collection.name}}</h1></span>
+          </div>
+        </div>
+        <div class="flex flex-column flex-auto">
+
+          <div class="block-content">
+            <div class="ng-star-inserted">
+              <div class="surface-ground px-1 py-2 md:px-2 lg:px-4">
+
+
+                <app-multiple-choice-card *ngIf="actualQuestion.cardType.name==='MultipleChoice'"
+                                          [actualQuestion]="actualQuestion" [showAnswer]="showAnswer"
+                                          (nextQuestionEmitter)="nextQuestion()"
+                                          (previousQuestionEmitter)="previousQuestion()">
+
+                </app-multiple-choice-card>
+                <app-standard-card *ngIf="actualQuestion.cardType.name==='StandardCard'"
+                                   [actualQuestion]="actualQuestion" [showAnswer]="showAnswer"
+                                   (nextQuestionEmitter)="nextQuestion()"
+                                   (previousQuestionEmitter)="previousQuestion()">
+                </app-standard-card>
+
+                <div class="grid nogutter mt-2">
+                  <div class="col-12 lg:col-4 p-3">
+                    <div class="shadow-2 border-round h-full surface-card">
+                      <div class="p-4">
+                        <div
+                          class="text-xl text-900 font-medium mb-3 line-height-3">Vorherige Frage
+                        </div>
+                        <div *ngIf="actualQuestion.cardType.name=='StandardCard' && previousQuestionItem!=null"
+                             class="line-height-3 mb-3 text-700">{{previousQuestionItem.question}}</div>
+                        <div *ngIf="actualQuestion.cardType.name=='MultipleChoice' && previousQuestionItem!=null"
+                             class="line-height-3 mb-3 text-700">{{previousQuestionItem.question.question}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 lg:col-4 p-3">
+                    <div class="shadow-2 border-round h-full surface-card">
+                      <div class="p-4">
+                        <div
+                          class="text-xl text-900 font-medium mb-3 line-height-3"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 lg:col-4 p-3">
+                    <div class="shadow-2 border-round h-full surface-card">
+                      <div class="p-4">
+                        <div
+                          class="text-xl text-900 font-medium mb-3 line-height-3">Nächste Frage
+                        </div>
+                        <div *ngIf="actualQuestion.cardType.name==='StandardCard'"
+                             class="line-height-3 mb-3 text-700">{{nextQuestionItem.question}}</div>
+                        <div *ngIf="actualQuestion.cardType.name==='MultipleChoice'"
+                             class="line-height-3 mb-3 text-700">{{nextQuestionItem.question.question}}</div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+            </div><!----><!----></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

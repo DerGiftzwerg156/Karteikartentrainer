@@ -1,6 +1,6 @@
 package com.example.backend.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.sql.Timestamp;
 

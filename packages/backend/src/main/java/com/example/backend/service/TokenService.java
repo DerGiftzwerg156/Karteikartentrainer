@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.entity.Token;
 import com.example.backend.repositorys.TokenRepository;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

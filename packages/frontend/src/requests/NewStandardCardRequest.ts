@@ -1,13 +1,15 @@
 import {Collection} from "../entitys/Collection";
 import {StandardCard} from "../entitys/StandardCard";
 
-export class NewStandardCardRequest{
-  collection:Collection;
-  standardCard:StandardCard;
+export class NewStandardCardRequest {
+  collection: Collection;
+  question: string;
+  answer: string;
 
 
-  constructor(collection: Collection, standardCard: StandardCard) {
+  constructor(collection: Collection, question: string, answer: string) {
     this.collection = collection;
-    this.standardCard = standardCard;
+    this.question = question;
+    this.answer = answer;
   }
 }

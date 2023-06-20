@@ -3,12 +3,13 @@ import {ActivatedRoute} from "@angular/router";
 import {Collection} from "../../../entitys/Collection";
 import {StandardCard} from "../../../entitys/StandardCard";
 import {MultipleChoiceQuestionResponse} from "../../../responses/MultipleChoiceQuestionResponse";
-import {User} from "../../../entitys/User";
-import {Token} from "../../../entitys/Token";
 import {CardType} from "../../../entitys/CardType";
-import {MultipleChoiceQuestion} from "../../../entitys/MultipleChoiceQuestion";
-import {MultipleChoiceAnswer} from "../../../entitys/MultipleChoiceAnswer";
-import {DialogTemplates} from "primeng/dialog";
+import {LoggerService} from "../../../services/logger.service";
+import {CollectionService} from "../../../services/collection.service";
+import {StandardCardService} from "../../../services/standard-card.service";
+import {MultipleChoiceService} from "../../../services/multiple-choice.service";
+import {NewMultipleChoiceRequest} from "../../../requests/NewMultipleChoiceRequest";
+import {MultipleChoiceAnswerPlan} from "../../../entitys/MultipleChoiceAnswerPlan";
 
 @Component({
   selector: 'app-edit-collection',
@@ -24,35 +25,36 @@ export class EditCollectionComponent implements OnInit {
   standardCards: StandardCard[];
   multipleChoiceQuestions: MultipleChoiceQuestionResponse[] = [];
 
-  testQuestion: MultipleChoiceQuestion
-
   isEditorVisible: boolean = false;
-  editorType:string = "";
+  editorType: string = "";
 
   // @ts-ignore
   selectedStandardCard: StandardCard;
   // @ts-ignore
-  selectedMultipleChoiceCard: MultipleChoiceQuestionResponse;
+  selectedMultipleChoiceCard: NewMultipleChoiceRequest;
+  selectedMultipleChoiceCardId: number = 0;
+  test: boolean = true;
 
 
-  constructor(private route: ActivatedRoute) {
-    this.collection = new Collection(1, new User(0, new Token(1, "abcde", 123), 'test@test.de', 'pw1234', true, 234), 'First Collection', '1 Dies ist nur eine Test Collection', 12345)
-    this.testQuestion = new MultipleChoiceQuestion(1, this.collection, new CardType(1, "MultipleChoice", "Standard Frage Antwort"), 'Welche Aussage ist richtig?')//TODO Frage löschen
-    this.standardCards = [
-      new StandardCard(1, this.collection, new CardType(1, "Standard", "Standard Frage Antwort"), "Was ist 1+1?", "Die Antwort ist 2!"),
-      new StandardCard(2, this.collection, new CardType(1, "Standard", "Standard Frage Antwort"), "Was ist 1+3?", "Die Antwort ist 4!")
-    ];
-    this.multipleChoiceQuestions = [
-      new MultipleChoiceQuestionResponse(this.testQuestion, [new MultipleChoiceAnswer(1, this.testQuestion, "1+1 ist 3", false), new MultipleChoiceAnswer(2, this.testQuestion, '1+1 ist 2', true), new MultipleChoiceAnswer(1, this.testQuestion, "1+1 ist 4", false), new MultipleChoiceAnswer(1, this.testQuestion, "1+1 ist 7", false)]),
-      new MultipleChoiceQuestionResponse(this.testQuestion, [new MultipleChoiceAnswer(1, this.testQuestion, "1+1 ist 3", false), new MultipleChoiceAnswer(2, this.testQuestion, '1+1 ist 2', true), new MultipleChoiceAnswer(1, this.testQuestion, "1+1 ist 4", false), new MultipleChoiceAnswer(1, this.testQuestion, "1+1 ist 7", false)]),
-      new MultipleChoiceQuestionResponse(this.testQuestion, [new MultipleChoiceAnswer(1, this.testQuestion, "1+1 ist 3", false), new MultipleChoiceAnswer(2, this.testQuestion, '1+1 ist 2', true), new MultipleChoiceAnswer(1, this.testQuestion, "1+1 ist 4", false), new MultipleChoiceAnswer(1, this.testQuestion, "1+1 ist 7", false)])
-    ];
+  constructor(private route: ActivatedRoute, private logger: LoggerService, private collectionService: CollectionService, private standardCardService: StandardCardService, private multipleChoiceService: MultipleChoiceService) {
   }
 
   ngOnInit() {
+    this.loadCards();
+  }
+
+  loadCards() {
     const routeParams = this.route.snapshot.paramMap;
-    const collectionId = Number(routeParams.get('collectionId'))
-    //   TODO die Collection im Backend abfragen
+    const collectionId = routeParams.get('collectionId');
+    this.collectionService.getCollectionByAccessKey(collectionId!).subscribe(res => {
+      this.collection = res;
+      this.standardCardService.getAllStandardCardsByCollection(res.id).subscribe(res => {
+        this.standardCards = res;
+      })
+      this.multipleChoiceService.getAllMultipleChoiceByCollection(res.id).subscribe(res => {
+        this.multipleChoiceQuestions = res;
+      })
+    })
   }
 
   editStandardCard(singleStandardCard: StandardCard) {
@@ -62,15 +64,13 @@ export class EditCollectionComponent implements OnInit {
   }
 
   deleteStandardCard(singleStandardCard: StandardCard) {
-    //   TODO implementieren
+    this.standardCardService.deleteStandardCard(singleStandardCard.id).subscribe(() => {
+      this.loadCards()
+    });
   }
 
   createNewMultipleChoiceCard() {
-    let question = new MultipleChoiceQuestion(0, this.collection, this.cardTypes[0], "");
-    let answers: MultipleChoiceAnswer[] = [
-      new MultipleChoiceAnswer(0, question, "", true)
-    ];
-    this.selectedMultipleChoiceCard = new MultipleChoiceQuestionResponse(question, answers);
+    this.selectedMultipleChoiceCard = new NewMultipleChoiceRequest(this.collection, "", [new MultipleChoiceAnswerPlan("", false)]);
     this.editorType = "multipleChoice";
     this.isEditorVisible = true;
   }
@@ -82,16 +82,25 @@ export class EditCollectionComponent implements OnInit {
   }
 
   editMultipleChoiceCard(singleMultipleChoiceCard: MultipleChoiceQuestionResponse) {
-    this.selectedMultipleChoiceCard = singleMultipleChoiceCard;
+    this.selectedMultipleChoiceCardId = singleMultipleChoiceCard.question.id;
+    let answers: MultipleChoiceAnswerPlan[] = [];
+    singleMultipleChoiceCard.answers.forEach(item => {
+      console.log(item)
+      answers.push(new MultipleChoiceAnswerPlan(item.answer, item.isRight));
+    });
+    this.selectedMultipleChoiceCard = new NewMultipleChoiceRequest(this.collection, singleMultipleChoiceCard.question.question, answers);
     this.editorType = "multipleChoice";
     this.isEditorVisible = true;
   }
 
   deleteMultipleChoiceCard(singleMultipleChoiceCard: MultipleChoiceQuestionResponse) {
-    //   TODO implementieren
+    this.multipleChoiceService.deleteSingleQuestion(singleMultipleChoiceCard.question.id).subscribe(() => {
+      this.loadCards()
+    });
   }
 
   closeAllDialogs() {
+    this.loadCards()
     this.isEditorVisible = false;
     this.isEditorVisible = false;
   }

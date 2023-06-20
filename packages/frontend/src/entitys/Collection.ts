@@ -5,10 +5,10 @@ export class Collection {
   user: User;
   name: string;
   description: string;
-  accessKey: number;
+  accessKey: string;
 
 
-  constructor(id: number, user: User, name: string, description: string, accessKey: number) {
+  constructor(id: number, user: User, name: string, description: string, accessKey: string) {
     this.id = id;
     this.user = user;
     this.name = name;

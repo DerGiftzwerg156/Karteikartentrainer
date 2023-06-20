@@ -2,7 +2,6 @@ package com.example.backend.controller;
 
 import com.example.backend.Exceptions.UnauthorizedException;
 import com.example.backend.entity.StandardCard;
-import com.example.backend.entity.Token;
 import com.example.backend.entity.User;
 import com.example.backend.requests.NewStandardCardRequest;
 import com.example.backend.service.CollectionService;
@@ -11,7 +10,6 @@ import com.example.backend.service.TokenService;
 import com.example.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +34,7 @@ public class StandardCardController {
     @PostMapping("/createNew")
     public ResponseEntity<StandardCard> createNewStandardCard(@RequestBody NewStandardCardRequest newStandardCardRequest, @RequestHeader(value = "Authorization") Long tokenId) {
         if (tokenService.isTokenValid(tokenId)) {
-            StandardCard standardCard = standardCardService.createNewStandardCard(newStandardCardRequest.getCollection(), newStandardCardRequest.getStandardCard());
+            StandardCard standardCard = standardCardService.createNewStandardCard(newStandardCardRequest);
             return new ResponseEntity<>(standardCard, HttpStatus.OK);
         } else throw new UnauthorizedException("Invalid Token");
     }

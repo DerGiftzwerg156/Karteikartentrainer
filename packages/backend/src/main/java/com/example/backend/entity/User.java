@@ -1,6 +1,6 @@
 package com.example.backend.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
@@ -30,7 +30,7 @@ public class User {
     public User() {
     }
 
-    public User(String mail, String password,int verificationCode) {
+    public User(String mail, String password, int verificationCode) {
         this.mail = mail;
         this.password = password;
         this.verified = false;

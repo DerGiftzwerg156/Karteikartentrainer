@@ -1,16 +1,16 @@
 import {Collection} from "../entitys/Collection";
 import {MultipleChoiceQuestion} from "../entitys/MultipleChoiceQuestion";
 import {MultipleChoiceAnswer} from "../entitys/MultipleChoiceAnswer";
+import {MultipleChoiceAnswerPlan} from "../entitys/MultipleChoiceAnswerPlan";
 
 export class NewMultipleChoiceRequest {
   collection: Collection;
-  multipleChoiceQuestion: MultipleChoiceQuestion;
-  multipleChoiceAnswer: MultipleChoiceAnswer[];
+  question: string;
+  answers: MultipleChoiceAnswerPlan[];
 
-
-  constructor(collection: Collection, multipleChoiceQuestion: MultipleChoiceQuestion, multipleChoiceAnswer: MultipleChoiceAnswer[]) {
+  constructor(collection: Collection, question: string, answers: MultipleChoiceAnswerPlan[]) {
     this.collection = collection;
-    this.multipleChoiceQuestion = multipleChoiceQuestion;
-    this.multipleChoiceAnswer = multipleChoiceAnswer;
+    this.question = question;
+    this.answers = answers;
   }
 }

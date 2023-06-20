@@ -1,9 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.entity.CardType;
-import com.example.backend.entity.Collection;
-import com.example.backend.entity.MultipleChoiceAnswer;
-import com.example.backend.entity.MultipleChoiceQuestion;
+import com.example.backend.entity.*;
 import com.example.backend.repositorys.MultipleChoiceAnswerRepository;
 import com.example.backend.repositorys.MultipleChoiceQuestionRepository;
 import com.example.backend.requests.NewMultipleChoiceRequest;
@@ -11,9 +8,11 @@ import com.example.backend.responses.MultipleChoiceQuestionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class MultipleChoiceService {
 
     @Autowired
@@ -26,9 +25,9 @@ public class MultipleChoiceService {
     private CardTypeService cardTypeService;
 
     public boolean createNewMultipleChoiceQuestion(Collection collection, NewMultipleChoiceRequest newMultipleChoiceRequest) {
-        MultipleChoiceQuestion newQuestion = new MultipleChoiceQuestion(collection, getMultipleChoiceCardType(), newMultipleChoiceRequest.getMultipleChoiceQuestion().getQuestion());
+        MultipleChoiceQuestion newQuestion = new MultipleChoiceQuestion(collection, getMultipleChoiceCardType(), newMultipleChoiceRequest.getQuestion());
         MultipleChoiceQuestion question = questionRepository.save(newQuestion);
-        for (MultipleChoiceAnswer answer : newMultipleChoiceRequest.getMultipleChoiceAnswers()) {
+        for (MultipleChoiceAnswerPlan answer : newMultipleChoiceRequest.getAnswers()) {
             MultipleChoiceAnswer newAnswer = new MultipleChoiceAnswer(question, answer.getAnswer(), answer.isRight());
             answerRepository.save(newAnswer);
         }
@@ -45,7 +44,7 @@ public class MultipleChoiceService {
         List<MultipleChoiceQuestion> questionList = questionRepository.findAllByCollection(collection);
         MultipleChoiceQuestionResponse[] responses = new MultipleChoiceQuestionResponse[questionList.size()];
         for (int i = 0; i < questionList.size(); i++) {
-            responses[i]=new MultipleChoiceQuestionResponse(questionList.get(i),getAnswersToQuestion(questionList.get(i)));
+            responses[i]=new MultipleChoiceQuestionResponse(getMultipleChoiceCardType(),questionList.get(i),getAnswersToQuestion(questionList.get(i)));
         }
         return responses;
     }

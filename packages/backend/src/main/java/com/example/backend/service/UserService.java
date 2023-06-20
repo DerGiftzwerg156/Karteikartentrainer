@@ -26,7 +26,7 @@ public class UserService {
     @Autowired
     private TokenService tokenService;
 
-    public User createNewUser(User user) {
+    public User createNewUser(LoginRequest user) {
         if (userRepository.findByMail(user.getMail()) == null) {
             User newUser = new User(user.getMail(), hashPassword(user.getPassword()), generateVerificationCode());
             return userRepository.save(newUser);
@@ -58,21 +58,22 @@ public class UserService {
 
     public User getUserByToken(Long tokenId) {
         if (isAuthenticated(tokenId)) {
-           return userRepository.findByToken(tokenService.getTokenById(tokenId));
+            return userRepository.findByToken(tokenService.getTokenById(tokenId));
         } else throw new UnauthorizedException("Invalid Token");
     }
 
     public User loginUser(LoginRequest loginRequest) {
         if (userRepository.findByMail(loginRequest.getMail()) != null) {
             User user = userRepository.findByMail(loginRequest.getMail());
-            if (user.isVerified() && user.getPassword().equals(hashPassword(loginRequest.getPassword()))) {
-                Token token = tokenService.createNewToken();
-                user.setToken(token);
-                return userRepository.save(user);
-            }
-            throw new UnauthorizedException("Passwort oder Email falsch");
-        }
-        throw new UnauthorizedException("Passwort oder Email falsch");
+            if (user.getPassword().equals(hashPassword(loginRequest.getPassword()))) {
+                if (user.isVerified()) {
+                    System.out.println(user.isVerified());
+                    Token token = tokenService.createNewToken();
+                    user.setToken(token);
+                    return userRepository.save(user);
+                } else throw new UnauthorizedException("Account nicht aktiviert!");
+            } else throw new UnauthorizedException("Passwort oder Email falsch");
+        } else throw new UnauthorizedException("Passwort oder Email falsch");
     }
 
     public boolean verifyAccount(ActivateAccountRequest activateAccountRequest) {

@@ -21,4 +21,16 @@ public class CardTypeController {
         CardType[] cardTypes = cardTypeService.getAllCardTypes();
         return new ResponseEntity<>(cardTypes, HttpStatus.OK);
     }
+
+    @GetMapping("/getStandard")
+    public ResponseEntity<CardType> getStandardCardType(){
+        CardType cardType = cardTypeService.getSpecificCardType("StandardCard");
+        return new ResponseEntity<>(cardType,HttpStatus.OK);
+    }
+
+    @GetMapping("/getMultipleChoice")
+    public ResponseEntity<CardType> getMultipleChoiceCardType(){
+        CardType cardType = cardTypeService.getSpecificCardType("MultipleChoice");
+        return new ResponseEntity<>(cardType,HttpStatus.OK);
+    }
 }
