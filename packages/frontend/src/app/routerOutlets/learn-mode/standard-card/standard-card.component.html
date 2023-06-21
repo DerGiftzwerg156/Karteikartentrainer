@@ -1,4 +1,4 @@
-<p-card [style]="{width: '60vw'}">
+<p-card [style]="{width: '100vw'}">
   <ng-template pTemplate="header">
     <h2 class=" ml-4 pt-3">{{actualQuestion.question}}</h2>
   </ng-template>
@@ -9,10 +9,10 @@
     <button *ngIf="!showAnswer" (click)="showAnswer=true" pRipple pButton label="Antwort anzeigen"
             icon="pi pi-check"
             class="mr-2 p-button-success"></button>
-    <button (click)="previousQuestionEmitter.emit(true)" pRipple pButton label="Vorherige Frage"
+    <button (click)="previousQuestion()" pRipple pButton label="Vorherige Frage"
             icon="pi pi-step-backward-alt"
             class="mr-1"></button>
-    <button (click)="nextQuestionEmitter.emit(true)" pRipple pButton label="Nächste Frage"
+    <button (click)="nextQuestion()" pRipple pButton label="Nächste Frage"
             icon="pi pi-step-forward-alt"></button>
   </ng-template>
 </p-card>

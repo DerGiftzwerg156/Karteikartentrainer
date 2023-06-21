@@ -19,15 +19,15 @@ public class MultipleChoiceAnswer {
     private String answer;
 
     @Column(name = "is_right", nullable = false)
-    private boolean isRight;
+    private boolean correct;
 
     public MultipleChoiceAnswer() {
     }
 
-    public MultipleChoiceAnswer(MultipleChoiceQuestion multipleChoiceQuestion, String answer, boolean isRight) {
+    public MultipleChoiceAnswer(MultipleChoiceQuestion multipleChoiceQuestion, String answer, boolean correct) {
         this.multipleChoiceQuestion = multipleChoiceQuestion;
         this.answer = answer;
-        this.isRight = isRight;
+        this.correct = correct;
     }
 
     public Long getId() {
@@ -50,11 +50,11 @@ public class MultipleChoiceAnswer {
         this.answer = answer;
     }
 
-    public boolean isRight() {
-        return isRight;
+    public boolean isCorrect() {
+        return correct;
     }
 
-    public void setRight(boolean right) {
-        isRight = right;
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
     }
 }

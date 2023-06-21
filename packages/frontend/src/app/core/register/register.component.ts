@@ -30,6 +30,9 @@ export class RegisterComponent implements OnInit {
   register() {
     if (this.comparePasswords()) {
       this.userService.createNewUser(new LoginRequest(this.mail, this.password)).subscribe(res => {
+        this.mail = "";
+        this.password = "";
+        this.passwordConfirm = "";
         this.closeDialog.emit(true);
         this.logger.showSuccess("Sie wurden erfolgreich registriert, bitte verifizieren sie sich als nächstes!")
       });

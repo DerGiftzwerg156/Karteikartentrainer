@@ -84,8 +84,7 @@
                           class="text-xl text-900 font-medium mb-3 line-height-3">{{singleMultipleChoiceCard.question.question}}</div>
                         <div *ngFor="let answerOption of singleMultipleChoiceCard.answers" class="p-inputgroup">
                           <span class="p-inputgroup-addon">
-                            <p>{{answerOption.isRight}}</p>
-                            <p-checkbox name="{{answerOption.id}}:{{answerOption.answer}}" [(ngModel)]="answerOption.isRight" [binary]="true"  inputId="binary" [disabled]="true"></p-checkbox>
+                            <p-checkbox name="{{answerOption.id}}:{{answerOption.answer}}" [(ngModel)]="answerOption.correct" [binary]="true"  inputId="binary" [disabled]="true"></p-checkbox>
                           </span>
                           <input type="text" pInputText [(ngModel)]="answerOption.answer" [disabled]="true"/>
                         </div>

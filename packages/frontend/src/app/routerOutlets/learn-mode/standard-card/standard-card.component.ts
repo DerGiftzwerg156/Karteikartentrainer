@@ -10,11 +10,19 @@ export class StandardCardComponent {
   // @ts-ignore
   @Input() actualQuestion: StandardCard;
 
-  // @ts-ignore
-  @Input() showAnswer: boolean;
+  showAnswer: boolean = false;
 
   @Output() nextQuestionEmitter = new EventEmitter<boolean>();
 
   @Output() previousQuestionEmitter = new EventEmitter<boolean>();
 
+  nextQuestion() {
+    this.showAnswer = false;
+    this.nextQuestionEmitter.emit();
+  }
+
+  previousQuestion() {
+    this.showAnswer = false;
+    this.previousQuestionEmitter.emit();
+  }
 }

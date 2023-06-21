@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MultipleChoiceQuestionResponse} from "../../../../responses/MultipleChoiceQuestionResponse";
+import {MultipleChoiceQuestionDummy} from "../../../../entitys/MultipleChoiceQuestionViewModels/MultipleChoiceQuestionDummy";
 
 @Component({
   selector: 'app-multiple-choice-card',
@@ -8,13 +9,23 @@ import {MultipleChoiceQuestionResponse} from "../../../../responses/MultipleChoi
 })
 export class MultipleChoiceCardComponent {
   // @ts-ignore
-  @Input() actualQuestion: MultipleChoiceQuestionResponse;
+  @Input() actualQuestion: MultipleChoiceQuestionDummy;
 
-  @Input() showAnswer: boolean = false;
+  showAnswer: boolean = false;
 
   @Output() nextQuestionEmitter = new EventEmitter<boolean>();
 
   @Output() previousQuestionEmitter = new EventEmitter<boolean>();
+
+  nextQuestion() {
+    this.showAnswer = false;
+    this.nextQuestionEmitter.emit();
+  }
+
+  previousQuestion() {
+    this.showAnswer = false;
+    this.previousQuestionEmitter.emit();
+  }
 
 
 }

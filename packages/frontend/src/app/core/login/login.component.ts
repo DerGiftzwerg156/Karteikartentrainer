@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser(new LoginRequest(this.mail, this.password)).subscribe(res => {
       sessionStorage.setItem("user", JSON.stringify(res));
       sessionStorage.setItem("token", res.token.id.toString());
+      this.mail = "";
+      this.password = "";
       this.closeDialog.emit(true);
       this.logger.showSuccess("Sie wurden erfolgreich angemeldet!");
     }, (error) => {

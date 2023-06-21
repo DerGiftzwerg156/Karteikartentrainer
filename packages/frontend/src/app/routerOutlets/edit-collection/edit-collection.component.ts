@@ -86,7 +86,7 @@ export class EditCollectionComponent implements OnInit {
     let answers: MultipleChoiceAnswerPlan[] = [];
     singleMultipleChoiceCard.answers.forEach(item => {
       console.log(item)
-      answers.push(new MultipleChoiceAnswerPlan(item.answer, item.isRight));
+      answers.push(new MultipleChoiceAnswerPlan(item.answer, item.correct));
     });
     this.selectedMultipleChoiceCard = new NewMultipleChoiceRequest(this.collection, singleMultipleChoiceCard.question.question, answers);
     this.editorType = "multipleChoice";

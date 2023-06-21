@@ -2,15 +2,17 @@ import {Component, OnInit} from '@angular/core';
 import {Collection} from "../../../../entitys/Collection";
 import {StandardCard} from "../../../../entitys/StandardCard";
 import {MultipleChoiceQuestionResponse} from "../../../../responses/MultipleChoiceQuestionResponse";
-import {MultipleChoiceQuestion} from "../../../../entitys/MultipleChoiceQuestion";
 import {ActivatedRoute} from "@angular/router";
-import {User} from "../../../../entitys/User";
-import {Token} from "../../../../entitys/Token";
-import {CardType} from "../../../../entitys/CardType";
-import {MultipleChoiceAnswer} from "../../../../entitys/MultipleChoiceAnswer";
 import {CollectionService} from "../../../../services/collection.service";
 import {StandardCardService} from "../../../../services/standard-card.service";
 import {MultipleChoiceService} from "../../../../services/multiple-choice.service";
+import {
+  MultipleChoiceQuestionDummy
+} from "../../../../entitys/MultipleChoiceQuestionViewModels/MultipleChoiceQuestionDummy";
+import {MultipleChoiceAnswer} from "../../../../entitys/MultipleChoiceAnswer";
+import {
+  MultipleChoiceAnswerDummy
+} from "../../../../entitys/MultipleChoiceQuestionViewModels/MultipleChoiceAnswerDummy";
 
 @Component({
   selector: 'app-card-view',
@@ -32,10 +34,7 @@ export class CardViewComponent implements OnInit {
   // @ts-ignore
   actualQuestion: any;
   // @ts-ignore
-  previousQuestionItem: any;
-  // @ts-ignore
-  nextQuestionItem: any;
-  showAnswer: boolean = false;
+  answerPlanDummy: MultipleChoiceQuestionDummy;
 
   constructor(private route: ActivatedRoute, private collectionService: CollectionService, private standardCardService: StandardCardService, private multipleChoiceService: MultipleChoiceService) {
   }
@@ -50,10 +49,7 @@ export class CardViewComponent implements OnInit {
         this.multipleChoiceService.getAllMultipleChoiceByCollection(this.collection.id).subscribe(res => {
           this.multipleChoiceCards = res;
           this.setQuestionList(this.standardCards, this.multipleChoiceCards);
-          console.log(this.questionList)
-          this.actualQuestion = this.questionList[this.questionNumber];
-          this.nextQuestionItem = this.questionList[this.questionNumber + 1];
-          console.log(this.nextQuestionItem)
+          this.setQuestion()
         })
       })
     })
@@ -73,20 +69,35 @@ export class CardViewComponent implements OnInit {
   }
 
   previousQuestion() {
-    this.actualQuestion = null;
-    this.showAnswer = false;
-    this.questionNumber = this.questionNumber - 1;
+    if (this.questionNumber - 1 >= 0) {
+      this.questionNumber = this.questionNumber - 1;
+      this.setQuestion();
+    }
+  }
+
+  private setQuestion() {
     this.actualQuestion = this.questionList[this.questionNumber]
+    if (this.actualQuestion.cardType.name == "MultipleChoice") {
+      let answers: MultipleChoiceAnswerDummy[] = [];
+      for (const item of this.actualQuestion.answers) {
+        answers.push(new MultipleChoiceAnswerDummy(item.answer, item.correct, false));
+      }
+      this.answerPlanDummy = new MultipleChoiceQuestionDummy(this.actualQuestion.question.question, answers);
+      console.log(this.answerPlanDummy)
+    }
   }
 
   nextQuestion() {
-    this.showAnswer = false;
-    this.questionNumber = this.questionNumber + 1;
-    this.actualQuestion = this.questionList[this.questionNumber];
+    if (this.questionNumber + 1 < this.questionList.length) {
+      this.questionNumber = this.questionNumber + 1;
+      this.setQuestion()
+    }
   }
 
-  askQuestion(standardItem: MultipleChoiceQuestionResponse | StandardCard) {
-    this.showAnswer = false;
+  askQuestion(standardItem
+                :
+                MultipleChoiceQuestionResponse | StandardCard
+  ) {
     this.actualQuestion = standardItem;
     console.log(standardItem)
     //   TODO implementieren

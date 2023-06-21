@@ -24,10 +24,11 @@ export class CreateCollectionComponent implements OnInit {
   createCollection() {
     // @ts-ignore
     this.collectionService.createNewCollection(new Collection(0, JSON.parse(sessionStorage.getItem("user")), this.name, this.description, "")).subscribe(res => {
+      console.log(res)
       this.logger.showInfo("Collection erfolgreich erstellt!");
-      let url = "/editCollection/" + res.id;
-      this.router.navigate([url]);
+      let url = "/editCollection/" + res.accessKey;
       this.closeDialog.emit(true);
+      this.router.navigate([url]).then(r => console.log("Lul"));
     });
   }
 
