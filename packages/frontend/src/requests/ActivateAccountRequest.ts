@@ -1,8 +1,8 @@
 export class ActivateAccountRequest {
   mail: string;
-  activationCode: string;
+  activationCode: number;
 
-  constructor(mail: string, activationCode: string) {
+  constructor(mail: string, activationCode: number) {
     this.mail = mail;
     this.activationCode = activationCode;
   }

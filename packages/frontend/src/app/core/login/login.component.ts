@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
 
   @Output() closeDialog = new EventEmitter<boolean>();
 
+  @Output() forgotPassword: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   mail: string = "";
   password: string = "";
 

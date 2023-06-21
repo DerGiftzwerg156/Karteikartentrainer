@@ -35,6 +35,7 @@ import {SplitterModule} from "primeng/splitter";
 import { MultipleChoiceCardComponent } from './routerOutlets/learn-mode/multiple-choice-card/multiple-choice-card.component';
 import { StandardCardComponent } from './routerOutlets/learn-mode/standard-card/standard-card.component';
 import { CardViewComponent } from './routerOutlets/learn-mode/card-view/card-view.component';
+import { VerifyComponent } from './core/verify/verify.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { CardViewComponent } from './routerOutlets/learn-mode/card-view/card-vie
     StartLearnComponent,
     MultipleChoiceCardComponent,
     StandardCardComponent,
-    CardViewComponent
+    CardViewComponent,
+    VerifyComponent
   ],
     imports: [
         BrowserModule,

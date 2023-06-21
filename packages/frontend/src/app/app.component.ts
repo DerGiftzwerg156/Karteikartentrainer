@@ -11,11 +11,12 @@ import {UserService} from "../services/user.service";
 export class AppComponent {
   @Output() editCollection = new EventEmitter<number>();
 
-  title = 'frontend';
+  title = 'Karteikartentrainer';
   collectionCode: string = "";
   isLoginVisible: boolean = false;
   isRegistrationVisible: boolean = false;
   isCreateLoginVisible: boolean = false;
+  forgotPassword: boolean = false;
 
   constructor(private router: Router, private logger: LoggerService, private userService: UserService) {
   }
@@ -33,6 +34,7 @@ export class AppComponent {
   closeDialogs() {
     this.isLoginVisible = false;
     this.isRegistrationVisible = false;
+    this.forgotPassword = false;
   }
 
   isLoggedIn() {

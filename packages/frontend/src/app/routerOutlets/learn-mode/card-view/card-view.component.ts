@@ -35,6 +35,7 @@ export class CardViewComponent implements OnInit {
   actualQuestion: any;
   // @ts-ignore
   answerPlanDummy: MultipleChoiceQuestionDummy;
+  randomMode: boolean = false;
 
   constructor(private route: ActivatedRoute, private collectionService: CollectionService, private standardCardService: StandardCardService, private multipleChoiceService: MultipleChoiceService) {
   }
@@ -49,23 +50,45 @@ export class CardViewComponent implements OnInit {
         this.multipleChoiceService.getAllMultipleChoiceByCollection(this.collection.id).subscribe(res => {
           this.multipleChoiceCards = res;
           this.setQuestionList(this.standardCards, this.multipleChoiceCards);
-          this.setQuestion()
         })
       })
     })
   }
 
   setQuestionList(standardCards: StandardCard[], multipleChoiceQuestionResponses: MultipleChoiceQuestionResponse[]) {
+    this.randomMode=false;
+    this.questionNumber = 0;
+    this.questionList = [];
     standardCards.forEach(item => {
       this.questionList.push(item);
     })
     multipleChoiceQuestionResponses.forEach(item => {
       this.questionList.push(item);
     })
+    console.log(this.questionList)
+    this.setQuestion()
   }
 
   setRandomQuestionList() {
-    //   TODO Random abfragen erstellen
+    this.randomMode = true;
+    this.questionNumber = 0;
+    let randomQuestionList: any[] = [];
+    randomQuestionList = this.shuffleArray(this.questionList);
+    this.questionList = [];
+    this.questionList = randomQuestionList;
+    console.log(this.questionList)
+    this.setQuestion();
+  }
+
+  private shuffleArray<T>(array: T[]): T[] {
+    const newArray = [...array]; // Kopie des Arrays erstellen
+
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+
+    return newArray;
   }
 
   previousQuestion() {
@@ -94,10 +117,7 @@ export class CardViewComponent implements OnInit {
     }
   }
 
-  askQuestion(standardItem
-                :
-                MultipleChoiceQuestionResponse | StandardCard
-  ) {
+  askQuestion(standardItem: MultipleChoiceQuestionResponse | StandardCard) {
     this.actualQuestion = standardItem;
     console.log(standardItem)
     //   TODO implementieren
