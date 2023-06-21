@@ -36,6 +36,9 @@ import { MultipleChoiceCardComponent } from './routerOutlets/learn-mode/multiple
 import { StandardCardComponent } from './routerOutlets/learn-mode/standard-card/standard-card.component';
 import { CardViewComponent } from './routerOutlets/learn-mode/card-view/card-view.component';
 import { VerifyComponent } from './core/verify/verify.component';
+import {SidebarModule} from "primeng/sidebar";
+import {TabMenuModule} from "primeng/tabmenu";
+import {MegaMenuModule} from "primeng/megamenu";
 
 @NgModule({
   declarations: [
@@ -56,28 +59,31 @@ import { VerifyComponent } from './core/verify/verify.component';
     CardViewComponent,
     VerifyComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        CardModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        AccordionModule,
-        ButtonModule,
-        FormsModule,
-        ChipsModule,
-        FormsModule,
-        DialogModule,
-        ToastModule,
-        InputTextareaModule,
-        RippleModule,
-        MenubarModule,
-        DropdownModule,
-        InputSwitchModule,
-        AvatarModule,
-        CheckboxModule,
-        SplitterModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    CardModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AccordionModule,
+    ButtonModule,
+    FormsModule,
+    ChipsModule,
+    FormsModule,
+    DialogModule,
+    ToastModule,
+    InputTextareaModule,
+    RippleModule,
+    MenubarModule,
+    DropdownModule,
+    InputSwitchModule,
+    AvatarModule,
+    CheckboxModule,
+    SplitterModule,
+    SidebarModule,
+    TabMenuModule,
+    MegaMenuModule
+  ],
   providers: [MessageService],
   bootstrap: [AppComponent]
 })

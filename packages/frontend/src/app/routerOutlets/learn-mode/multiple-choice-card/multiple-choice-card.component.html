@@ -1,9 +1,9 @@
 <div>
   <div class="p-inputgroup">
-    <span [style]="{width: '6vw'}" class="p-inputgroup-addon">
+    <span [style]="{width: '16vw'}" class="p-inputgroup-addon">
                             Deine Antwort
                           </span>
-    <span [style]="{width: '6vw'}" *ngIf="showAnswer" class="p-inputgroup-addon">
+    <span [style]="{width: '16vw'}" *ngIf="showAnswer" class="p-inputgroup-addon">
                             Richtige Antwort
                           </span>
     <span [style]="{width: '60vw'}" class="p-inputgroup-addon">
@@ -12,12 +12,12 @@
   </div>
   <div *ngFor="let answerOption of actualQuestion.answers" class="p-inputgroup">
     <!--        User input-->
-    <span [style]="{width: '6vw'}" class="p-inputgroup-addon">
+    <span [style]="{width: '16vw'}" class="p-inputgroup-addon">
                             <p-checkbox name="{{answerOption.answer}}+1" [(ngModel)]="answerOption.userInput"
                                         [binary]="true" [disabled]="showAnswer"></p-checkbox>
                           </span>
     <!--        Correct Answers-->
-    <span [style]="{width: '6vw'}" *ngIf="showAnswer" class="p-inputgroup-addon">
+    <span [style]="{width: '16vw'}" *ngIf="showAnswer" class="p-inputgroup-addon">
                             <p-checkbox name="{{answerOption.answer}}+2" [(ngModel)]="answerOption.correct"
                                         [binary]="true" [disabled]="true"></p-checkbox>
                           </span>

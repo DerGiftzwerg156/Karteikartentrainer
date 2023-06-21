@@ -1,52 +1,22 @@
-<div class="block-content">
-  <div class="ng-star-inserted">
-    <div class="min-h-screen flex flex-column surface-ground">
-      <div class="surface-overlay py-3 px-6 flex align-items-center justify-content-between relative lg:static"
-           style="min-height: 80px;">
-        <div
-          class="align-items-center flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full surface-overlay left-0 top-100 z-1 shadow-2 lg:shadow-none">
-          <ul class="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row">
-            <li routerLink=""><a
-              class="p-ripple p-element flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150"><i
-              class="pi pi-home mr-2"></i><span>Home</span><span class="p-ink"></span></a></li>
-            <li *ngIf="!isLoggedIn()" (click)="showLogin()"><a
-              class="p-ripple p-element flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150"><i
-              class="pi pi-sign-in mr-2"></i><span>Anmelden</span><span class="p-ink"></span></a></li>
-            <li *ngIf="isLoggedIn()"><a
-              class="p-ripple p-element flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150"><i
-              class="pi pi-user mr-2"></i><span>Profil</span><span class="p-ink"></span></a></li>
-            <li *ngIf="isLoggedIn()" (click)="logout()"><a
-              class="p-ripple p-element flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150"><i
-              class="pi pi-sign-out mr-2"></i><span>Abmelden</span><span class="p-ink"></span></a></li>
-            <li *ngIf="isLoggedIn()" (click)="showCreateNewCollectionDialog()"><a
-              class="p-ripple p-element flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150"><i
-              class="pi pi-plus mr-2"></i><span>Neue Kartensammlung</span><span class="p-ink"></span></a></li>
-            <li *ngIf="isLoggedIn()" (click)="showMyCollections()"><a
-              class="p-ripple p-element flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150"><i
-              class="pi pi-bars mr-2"></i><span>Meine Kartensammlungen</span><span class="p-ink"></span></a></li>
-          </ul>
-          <ul
-            class="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row border-top-1 surface-border lg:border-top-none">
-            <li>
-              <div class="p-inputgroup">
-                <input type="text" pInputText placeholder="Collection Code" [(ngModel)]="collectionCode"/>
-                <button type="button" pButton label="Sammlung suchen" (click)="searchCollectionCode()"></button>
-              </div>
-            </li>
-            <li class="border-top-1 surface-border lg:border-top-none">
-
-            </li>
-          </ul>
-        </div>
+<div class="card">
+  <p-megaMenu [model]="menuItems" styleClass="flex">
+    <ng-template pTemplate="start">
+      <img src="favicon.ico"/>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <div class="p-inputgroup">
+        <input type="text" pInputText placeholder="Collection Code" [(ngModel)]="collectionCode"/>
+        <button type="button" pButton label="Sammlung suchen" (click)="searchCollectionCode()"></button>
       </div>
-      <div class="p-5 flex flex-column flex-auto">
-        <div class="border-2 border-dashed surface-border border-round surface-section flex-auto">
-          <router-outlet></router-outlet>
-        </div>
-      </div>
-    </div>
+    </ng-template>
+  </p-megaMenu>
+</div>
+<div class="p-3 flex flex-column flex-auto">
+  <div class="border-2 border-dashed surface-border border-round surface-section flex-auto">
+    <router-outlet></router-outlet>
   </div>
 </div>
+
 <p-toast position="bottom-center" key="messager"></p-toast>
 
 <p-dialog [(visible)]="isLoginVisible">

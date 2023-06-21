@@ -34,6 +34,7 @@ export class EditCollectionComponent implements OnInit {
   selectedMultipleChoiceCard: NewMultipleChoiceRequest;
   selectedMultipleChoiceCardId: number = 0;
   test: boolean = true;
+  sideBarVisible: boolean = false;
 
 
   constructor(private route: ActivatedRoute, private logger: LoggerService, private collectionService: CollectionService, private standardCardService: StandardCardService, private multipleChoiceService: MultipleChoiceService) {
@@ -70,12 +71,14 @@ export class EditCollectionComponent implements OnInit {
   }
 
   createNewMultipleChoiceCard() {
+    this.sideBarVisible=false;
     this.selectedMultipleChoiceCard = new NewMultipleChoiceRequest(this.collection, "", [new MultipleChoiceAnswerPlan("", false)]);
     this.editorType = "multipleChoice";
     this.isEditorVisible = true;
   }
 
   createNewStandardCard() {
+    this.sideBarVisible=false;
     this.selectedStandardCard = new StandardCard(0, this.collection, this.cardTypes[0], "", "");
     this.isEditorVisible = true;
     this.editorType = "standard";

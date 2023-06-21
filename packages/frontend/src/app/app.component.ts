@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {LoggerService} from "../services/logger.service";
 import {Router} from "@angular/router";
 import {UserService} from "../services/user.service";
+import {MegaMenuItem} from "primeng/api";
 
 @Component({
   selector: 'app-root',
@@ -17,8 +18,34 @@ export class AppComponent {
   isRegistrationVisible: boolean = false;
   isCreateLoginVisible: boolean = false;
   forgotPassword: boolean = false;
+  menuItems: MegaMenuItem[] | undefined;
+  tabMenuItems: MegaMenuItem[] = [
+    {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: ''},
+    {label: 'Profil', icon: 'pi pi-fw pi-user',},
+    {label: 'Abmelden', icon: 'pi pi-fw pi-sign-out', routerLink: '/logout'},
+    {
+      label: 'Neue Kartensammlung', icon: 'pi pi-fw pi-plus', command: () => {
+        this.showCreateNewCollectionDialog();
+      }
+    },
+    {
+      label: 'Meine Kartensammlungen', icon: 'pi pi-fw pi-bars', command: () => {
+        this.showMyCollections();
+      }
+    }
+  ];
+  standardTabMenuItems: MegaMenuItem[] = [
+    {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: ''},
+    {
+      label: 'Anmelden', icon: 'pi pi-fw pi-sign-in', command: () => {
+        this.showLogin();
+      }
+    }
+  ];
+;
 
   constructor(private router: Router, private logger: LoggerService, private userService: UserService) {
+    this.menuItems = this.standardTabMenuItems;
   }
 
   showLogin() {
@@ -32,21 +59,25 @@ export class AppComponent {
   }
 
   closeDialogs() {
+    this.isLoggedIn()
     this.isLoginVisible = false;
     this.isRegistrationVisible = false;
     this.forgotPassword = false;
   }
 
   isLoggedIn() {
+    console.log("1")
     // TODO Wenn kein valider Token dann logout
-    // if(sessionStorage.getItem("token")){
-    //   return true;
-    // }else {
-    //   // this.userService.logout()
-    //   this.logger.showError("Bitte erneut anmelden")
-    //   return false;
-    // }
-    return sessionStorage.getItem("token") != null;
+    if (sessionStorage.getItem("token")) {
+      this.menuItems = this.tabMenuItems;
+      return true;
+    } else {
+      this.menuItems = this.standardTabMenuItems;
+      this.userService.logout()
+      this.logger.showError("Bitte erneut anmelden")
+      return false;
+    }
+    // return sessionStorage.getItem("token") != null;
   }
 
   searchCollectionCode() {
@@ -64,6 +95,7 @@ export class AppComponent {
   }
 
   logout() {
+    this.menuItems=this.standardTabMenuItems;
     this.router.navigate(['logout'])
   }
 
