@@ -26,10 +26,15 @@ public class UserService {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private EmailService mailService;
+
     public User createNewUser(LoginRequest user) {
         if (userRepository.findByMail(user.getMail()) == null) {
             User newUser = new User(user.getMail(), hashPassword(user.getPassword()), generateVerificationCode());
-            return userRepository.save(newUser);
+            User savedUser = userRepository.save(newUser);
+            mailService.sendAccountVerificationMail(savedUser);
+            return savedUser;
         } else {
             throw new UserAlreadyExistException("Diese Mail wird bereits verwendet!");
         }

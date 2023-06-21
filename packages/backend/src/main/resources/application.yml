@@ -6,7 +6,7 @@ spring:
     init:
       mode: always
   datasource:
-    url: jdbc:mariadb://192.168.178.69:3307/cards
+    url: jdbc:mariadb://192.168.178.69:3306/cards
     username: root
     password: Password1
     initialization-mode: always

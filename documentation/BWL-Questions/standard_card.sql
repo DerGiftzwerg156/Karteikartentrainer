@@ -2,7 +2,8 @@ INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (1, 
 A)    Hauptbestandteil des externen Rechnungswesens ist der handelsrechtliche Jahresabschluss. <br>
 B)    Eine Funktion des externen Rechnungswesens ist die Ermittlung des ausschüttbaren Gewinns. <br>
 C)    Zur Führung eines internen Rechnungswesens gibt es eine gesetzliche Verpflichtung.<br>
-D)    Zur handelsrechtlichen Buchführung verpflichtet ist jeder Kaufmann.', 'Welche der folgenden Aussagen betreffend die Unterscheidung zwischen externem und interne Rechnungswesen ist falsch? <br>B)    Eine Funktion des externen Rechnungswesens ist die Ermittlung des ausschüttbaren Gewinns. ');
+D)    Zur handelsrechtlichen Buchführung verpflichtet ist jeder Kaufmann.', 'Welche der folgenden Aussagen betreffend die Unterscheidung zwischen externem und interne Rechnungswesen ist falsch?<br> C) Zur Führung eines internen Rechnungswesens gibt es eine gesetzliche Verpflichtung.<br> 
+');
 INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (2, 'Bei welcher der unten genannten Antworten ist die folgende Aussage richtig: „Es handelt sich sowohl um eine Einzahlung als auch um eine Einnahme, aber nicht um einen Ertrag“. <br>
 A)    Aufnahme eines Darlehens in Höhe von 10.000 €; das Geld wird dem betrieblichen Bankkonto gutgeschrieben. <br>
 B)    Barverkauf einer Maschine, die einen Wert von 10.000 € hat, zu einem Preis von 10.000 €. <br>
@@ -128,7 +129,6 @@ INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (16,
 •	A sagt: Wenn ich mich ins Handelsregister (HRA) eintragen lasse, bin ich ein Kaufmann. 
 ');
 INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (17, 'Was ist die Aufgabe der Materialwirtschaft?<br>
-•	Es ist die Aufgabe, die benötigten materiellen Produktionsfaktoren (Materialien), in der richtigen Art, am richtigen Ort, zur richtigen Zeit, in der richtigen Menge und in der richtigen Qualität im Betrieb zur Verfügung zu stellen.
 ', 'Was ist die Aufgabe der Materialwirtschaft?<br>
 •	Es ist die Aufgabe, die benötigten materiellen Produktionsfaktoren (Materialien), in der richtigen Art, am richtigen Ort, zur richtigen Zeit, in der richtigen Menge und in der richtigen Qualität im Betrieb zur Verfügung zu stellen.
 ');
@@ -154,9 +154,9 @@ INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (20,
 •	Bestellung erfolgt (Vertragsabschluss) <br>
 •	Lieferung wird überwacht bzgl. Termintreue<br>
 ');
-INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (21, 'Welche Arten gibt es um zu dokumentieren was zur Produktion gebraucht wird? 
-', 'Welche Arten gibt es um zu dokumentieren was zur Produktion gebraucht wird?<br> 
-•	Stücklisten <br>
+INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (21, 'Welche Arten gibt es um zu dokumentieren was zur Produktion gebraucht wird(Stücklisten)? 
+', 'Welche Arten gibt es um zu dokumentieren was zur Produktion gebraucht wird(Stücklisten)?<br> 
+•	Strukturstücklisten <br>
 •	Baumstruktur <br>
 •	Baukastenstückliste<br> 
 •	Mengenstückliste<br>
@@ -165,13 +165,12 @@ INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (22,
 •	Einzelfertigung<br>
 •	Serienfertigung<br>
 •	Massenfertigung<br>
-•	Fließfertigung<br>
 •	Chargenfertigung<br>
 ');
 INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (23, 'Nenne Fertigungsprinzipien.
 ', 'Nenne Fertigungsprinzipien.<br> 
 •	Werkstattfertigung<br>
-•	Fließbandfertigung<br>
+•	Fließfertigung<br>
 •	Gruppenfertigung<br>
 ');
 INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (24, 'Welche Verkäufertypen gibt es?
@@ -237,7 +236,7 @@ INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (34,
 INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (35, 'Was bedeutet der Deckungsbeitrag?
 
 ', 'Was bedeutet der Deckungsbeitrag?<br>
-•	Der Deckungsbeitrag reicht aus, um die Fixkosten zu decken.
+•	Ist die Differenz von Erlös und variablen Kosten
 ');
 INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (36, 'Wann kann ein Unternehmen trotz Gewinn Insolvent gehen?
 
@@ -257,4 +256,51 @@ INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (38,
 •	Annuitätenmethode (beinhaltet Kapitalwertmethode)<br>
 •	Interne Zinsfuß-Methode<br>
 •	Vollständiger Finanzplan<br>
+');
+INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (39, 'Welche Rollen muss ein Projektleiter einnehmen können?', 'Welche Rollen muss ein Projektleiter einnehmen können?<br>
+•	Moderator<br>
+•	Manager<br>
+•	Seelsorger<br>
+•	Diplomat/Politiker<br>
+•	Konfliktmanager<br>
+•	Teamentwickler
+');
+INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (40, 'Was ist beim Organisation Change Management (OCM) zu beachten?', 'Was ist beim Organisation Change Management (OCM) zu beachten?<br>
+•	Kontinuierliche Durchführung<br>
+•	Aktivitäten entsprechend der Projektgröße gestalten
+');
+INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (41, 'Nennen Sie die Vorteile, Inhalte und Ziele eines Projekthandbuchs', 'Nennen Sie die Vorteile, Inhalte und Ziele eines Projekthandbuchs<br>
+•	Ziel: Schnelles Zurechtfinden für alle Projektteammitglieder, Hilfsmittel zur Wahrung von Standards, Verringerung des Personenbezogenem Wissen, Nachvollziehbarkeit<br>
+•	Inhalt: Rahmenstruktur für Projekt vorgeben, Gliederung für Ergebnisbericht <br>
+•	Vorteile: Verfahrensweise und Orientierung der Mitarbeiter<br>
+');
+INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (42, 'Welche zwei Arten von Marketing werden Unterschieden?', 'Welche zwei Arten von Marketing werden Unterschieden?<br>
+•	Business-to-Business Marketing (B2B)<br>
+•	Business-to-Consumer Marketing (B2C)
+');
+INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (43, 'Nennen Sie Vor- und Nachteile der Einmalfertigung
+', 'Nennen Sie Vor- und Nachteile der Einmalfertigung<br>
+•	Beispiel: Schreiner/Prototypen<br>
+•	Beschreibung: Anforderungen an das Produkt können sich immer wieder Ändern<br> 
+•	Vorteile: Höhe Flexibilität, Kundentreue<br>
+•	Nachteile: Hoher Aufwand, Hohe Kosten<br>
+');
+INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (44, 'Nennen Sie Vor- und Nachteile der Massenfertigung', 'Nennen Sie Vor- und Nachteile der Massenfertigung<br>
+•	Beispiel: Pflegeprodukte<br>
+•	Beschreibung: Fertigung eines einzigen Produktes auf der Anlage<br> 
+•	Vorteile: kein Stillstand, hoher Automatisierungsgrad, Hoher Umsatz<br>
+•	Nachteile: Keine Anpassungsmöglichkeit, Eintönige Arbeit, Hohe Lagerkosten<br>
+');
+INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (45, 'Nennen Sie Vor- und Nachteile der Sortenfertigung
+', 'Nennen Sie Vor- und Nachteile der Sortenfertigung<br>
+•	Beispiel: Schokolade<br>
+•	Beschreibung: Umrüsten der Herstellenden Werkzeuge nötig oder unterschiedliche Produktionsanlagen<br>
+•	Vorteile: Geringe Stückpreise, Hoher Automatisierungsgrad<br>
+•	Nachteile: Hohe Fixkosten, Hoher Lagerbestand<br>
+');
+INSERT INTO cards.standard_card (standard_card_id, question, answer) VALUES (46, 'Nennen Sie Vor- und Nachteile der Serienfertigung', 'Nennen Sie Vor- und Nachteile der Serienfertigung<br>
+•	Beispiel: Schrauben in unterschiedlichen Größen<br>
+•	Beschreibung: Produkte ähneln sich so stark, dass sie alle auf der gleichen Anlage hergestellt werden.<br> 
+•	Vorteile: Effizienz, Skalierbarkeit<br>
+•	Nachteile: Geringe Flexibilität, Lange Vorlaufszeiten, Hohe Fixkosten (Investitionen in Anlagen)<br>
 ');
