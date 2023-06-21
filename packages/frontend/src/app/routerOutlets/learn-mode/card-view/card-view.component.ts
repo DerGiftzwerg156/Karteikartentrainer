@@ -37,6 +37,10 @@ export class CardViewComponent implements OnInit {
   answerPlanDummy: MultipleChoiceQuestionDummy;
   randomMode: boolean = false;
 
+  isFirstCard: boolean = true;
+  isLastCard: boolean = false;
+  showAnswer: boolean = false;
+
   constructor(private route: ActivatedRoute, private collectionService: CollectionService, private standardCardService: StandardCardService, private multipleChoiceService: MultipleChoiceService) {
   }
 
@@ -56,7 +60,7 @@ export class CardViewComponent implements OnInit {
   }
 
   setQuestionList(standardCards: StandardCard[], multipleChoiceQuestionResponses: MultipleChoiceQuestionResponse[]) {
-    this.randomMode=false;
+    this.randomMode = false;
     this.questionNumber = 0;
     this.questionList = [];
     standardCards.forEach(item => {
@@ -93,8 +97,13 @@ export class CardViewComponent implements OnInit {
 
   previousQuestion() {
     if (this.questionNumber - 1 >= 0) {
+      this.showAnswer = false;
+      this.isLastCard = false;
       this.questionNumber = this.questionNumber - 1;
       this.setQuestion();
+      if (this.questionNumber - 1 < 0) {
+        this.isFirstCard = true;
+      }
     }
   }
 
@@ -108,12 +117,18 @@ export class CardViewComponent implements OnInit {
       this.answerPlanDummy = new MultipleChoiceQuestionDummy(this.actualQuestion.question.question, answers);
       console.log(this.answerPlanDummy)
     }
+    console.log(this.actualQuestion)
   }
 
   nextQuestion() {
     if (this.questionNumber + 1 < this.questionList.length) {
+      this.showAnswer = false;
+      this.isFirstCard = false;
       this.questionNumber = this.questionNumber + 1;
       this.setQuestion()
+      if (this.questionNumber + 1 == this.questionList.length) {
+        this.isLastCard = true;
+      }
     }
   }
 
@@ -123,4 +138,7 @@ export class CardViewComponent implements OnInit {
     //   TODO implementieren
   }
 
+  restartLearning() {
+    //   TODO implementieren
+  }
 }
