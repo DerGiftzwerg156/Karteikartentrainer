@@ -1,0 +1,26 @@
+<p-card [style]="{width: '100vw'}">
+  <!--  <div class="flex align-items-center justify-content-center">-->
+  <div class="w-full border-round" [style]="{width: '40vw'}">
+    <div class="text-center mb-5">
+      <div class="text-900 text-3xl font-medium mb-3">Account Aktivieren</div>
+    </div>
+
+    <div class="flex flex-column justify-content-center align-items-center">
+      <label for="email1" class="block text-900 font-medium mb-2">Email</label>
+      <input id="email1" type="text" placeholder="Email Adresse" pInputText class="mb-3 w-20rem" [(ngModel)]="mail">
+
+      <label for="password1" class="block text-900 font-medium mb-2">Passwort</label>
+      <input id="password1" type="text" placeholder="Passwort" pInputText class="mb-3 w-20rem"
+             [(ngModel)]="verificationCode">
+
+      <button pButton pRipple label="Account aktivieren" icon="pi pi-lock-open" (click)="verify()"></button>
+      <!--      TODO Passwort vergessen implementiern-->
+      <!--      <div class="text-center mt-5">-->
+      <!--        <span class="text-600 font-medium line-height-3">Passwort vergessen?</span>-->
+      <!--        <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer"-->
+      <!--           (click)="forgotPassword.emit(true)">Jetzt zurücksetzen!</a>-->
+      <!--      </div>-->
+    </div>
+  </div>
+  <!--  </div>-->
+</p-card>
