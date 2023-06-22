@@ -9,8 +9,8 @@ import {VerifyComponent} from "./core/verify/verify.component";
 
 const routes: Routes = [
   {path: '', component: HomeSideComponent},
-  {path: 'activate/:mail/:verifyCode', component: VerifyComponent},
-  {path: 'activate', component: VerifyComponent},
+  {path: 'activateAccount/:mail/:verifyCode', component: VerifyComponent},
+  {path: 'activateAccount', component: VerifyComponent},
   {path: 'logout', component: LogoutComponent},
   {path: 'myCollections', component: CollectionOverviewComponent},
   {path: 'editCollection/:collectionId', component: EditCollectionComponent},
