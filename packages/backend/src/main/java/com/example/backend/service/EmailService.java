@@ -51,7 +51,7 @@ public class EmailService {
                         + "\n\nHier ist dein Verifizierung Link"
                         + "\n\nBitte öffne diesen Link und Verifiziere deinen Account!"
                         +"\n\n Sollte es Probleme oder Rückfragen geben, melden sie sich gerne!"
-                        + "\n\nhttps://cardTrainer.kenosserver.de/verify/"+user.getMail()+"/"+user.getVerificationCode()
+                        + "\n\nhttps://cardTrainer.kenosserver.de/#/activateAccount/"+user.getMail()+"/"+user.getVerificationCode()
                         + "\n\nNice Grüße"
                         + "\n"
                         + "\nDein CardTrain Team");
