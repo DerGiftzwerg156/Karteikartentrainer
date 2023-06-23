@@ -1,0 +1,17 @@
+version: "3"  # optional since v1.27.0
+services:
+  mariadb:
+    container_name: Karteikartentrainer-DB
+    image: mariadb
+    environment:
+      - MYSQL_DATABASE=cards
+      - MYSQL_PASSWORD=4RNuhQhV3HRYkVcyaHaEZhf2A6jNaiMCWurp49XJzRAbVyKHkgGqzYHqc747JArhYTiEEcnhTUCVZGjkn8CbELQ6mUvwpqPx6gPCwniNk7wp9mJV2Zk9JerEurAARt33
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=4RNuhQhV3HRYkVcyaHaEZhf2A6jNaiMCWurp49XJzRAbVyKHkgGqzYHqc747JArhYTiEEcnhTUCVZGjkn8CbELQ6mUvwpqPx6gPCwniNk7wp9mJV2Zk9JerEurAARt33
+    ports:
+      - "3306:3306"
+  ubuntu:
+    container_name: Karteikartentrainer
+    image: registry.kedi-server.de/onlykeno/homewebside-backend:latest
+    ports:
+      - "8080:8080"
